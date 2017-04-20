@@ -1,7 +1,7 @@
-var gulp 		= require('gulp'),
-	concatCSS 	= require('gulp-concat-css'),
-	bs 			= require('browser-sync').create(),
-	reload      = bs.reload;
+var gulp        = require('gulp');
+var browserSync = require('browser-sync').create();
+var reload      = browserSync.reload;
+var	concatCSS 	= require('gulp-concat-css');
 
 gulp.task('default',function(){
 	console.log('TEST!!!')
@@ -18,11 +18,16 @@ gulp.task('css_concat',function(){
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('server',function(){
-	bs.init({
-		server: {
-			baseDir: "./src/"
-		}
-	});
-	gulp.watch("*.html").on('chahge',reload);
+// Watch scss AND html files, doing different things with each.
+gulp.task('serve', function () {
+
+    // Serve files from the root of this project
+    browserSync.init({
+        server: {
+            baseDir: "./src/"
+        }
+    });
+
+    gulp.watch("./src/*.html").on("change", reload);
+    gulp.watch("./src/*/*.css").on("change", reload);
 });
