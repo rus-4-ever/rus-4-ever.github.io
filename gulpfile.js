@@ -13,9 +13,9 @@ gulp.task('html_copy',function(){
 });
 
 gulp.task('css_concat',function(){
-	return gulp.src("src/css/*.css")
-		.pipe(concatCSS('css/main.css'))
-		.pipe(gulp.dest('dist'));
+	return gulp.src("./src/*/*.css")
+		.pipe(concatCSS('main.css'))
+		.pipe(gulp.dest('src/css/'));
 });
 
 // Watch scss AND html files, doing different things with each.
