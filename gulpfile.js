@@ -18,6 +18,7 @@ gulp.task('css_concat',function(){
 		.pipe(gulp.dest('src/css/'));
 });
 
+
 // Watch scss AND html files, doing different things with each.
 gulp.task('serve', function () {
 
@@ -30,4 +31,17 @@ gulp.task('serve', function () {
 
     gulp.watch("./src/*.html").on("change", reload);
     gulp.watch("./src/*/*.css").on("change", reload);
+});
+
+gulp.task('serve_6', function () {
+
+    // Serve files from the root of this project
+    browserSync.init({
+        server: {
+            baseDir: "./les_6_grid/"
+        }
+    });
+
+    gulp.watch("./les_6_grid/*.html").on("change", reload);
+    gulp.watch("./les_6_grid/css/*.css").on("change", reload);
 });
